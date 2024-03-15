@@ -1,0 +1,38 @@
+[
+    {
+      "name": "22x145x1200 I",
+      "initialQuantity": 100,
+      "packQuantity": 10,
+      "boardVolume": 0.039
+    },
+    {
+      "name": "22x145x1200 IA",
+      "initialQuantity": 80,
+      "packQuantity": 10,
+      "boardVolume": 0.039
+    },
+    {
+      "name": "22x145x1200 IB",
+      "initialQuantity": 60,
+      "packQuantity": 10,
+      "boardVolume": 0.039
+    },
+    {
+      "name": "22x100x1200 I",
+      "initialQuantity": 120,
+      "packQuantity": 12,
+      "boardVolume": 0.0264
+    },
+    {
+      "name": "22x100x1200 IA",
+      "initialQuantity": 90,
+      "packQuantity": 12,
+      "boardVolume": 0.0264
+    },
+    {
+      "name": "22x100x1200 IB",
+      "initialQuantity": 70,
+      "packQuantity": 12,
+      "boardVolume": 0.0264
+    }
+  ]

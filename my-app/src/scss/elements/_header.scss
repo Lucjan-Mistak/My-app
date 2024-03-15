@@ -1,0 +1,40 @@
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.header {
+  height: 90px;
+  background-color: black;
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+  &__brand {
+    font-weight: normal;
+    font-size: 2rem;
+    color: red;
+  }
+}
+
+.nav {
+    &__element {
+      padding: 0 5px;
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+    &__link {
+      font-size: 1rem;
+      color: white;
+      text-transform: uppercase;
+      padding: 10px 40px 30px;
+      &:hover {
+        color: red;
+      }
+    }
+  }
