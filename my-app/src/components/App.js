@@ -1,3 +1,4 @@
+// App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home';
@@ -11,12 +12,17 @@ function App() {
         return storedStock ? JSON.parse(storedStock) : [];
     });
 
+    const handleClearStock = () => {
+        setStock([]);
+        localStorage.removeItem('stock');
+    };
+
     return (
         <Router>
             <div>
-                <Navbar setStock={setStock} />
+                <Navbar handleClearStock={handleClearStock} />
                 <Routes>
-                    <Route path="/" element={<Home stock={stock} setStock={setStock}/>} />
+                    <Route path="/" element={<Home stock={stock} />} />
                     <Route path="/production" element={<Production stock={stock} setStock={setStock} />} />
                     <Route path="/shipment" element={<Shipment stock={stock} setStock={setStock} />} />
                 </Routes>

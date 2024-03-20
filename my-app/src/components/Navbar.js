@@ -1,10 +1,14 @@
+// Navbar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar({ setStock }) {
-    const handleClearStock = () => {
-        setStock([]);
-        localStorage.removeItem('stock'); // Opcjonalnie, jeśli chcesz również usunąć dane z localStorage
+function Navbar({ handleClearStock }) {
+    const handleClearConfirmation = () => {
+        const confirmation = window.confirm('Czy na pewno chcesz wyczyścić magazyn?');
+
+        if (confirmation) {
+            handleClearStock();
+        }
     };
 
     return (
@@ -26,7 +30,7 @@ function Navbar({ setStock }) {
                             <Link to="/shipment" className="nav__link">Wysyłka elementów</Link>
                         </li>
                         <li className="nav-element">
-                            <button className="nav__button" onClick={handleClearStock}>Wyczyść magazyn</button>
+                            <button className="nav__button" onClick={handleClearConfirmation}>Wyczyść magazyn</button>
                         </li>
                     </ul>
                 </nav>

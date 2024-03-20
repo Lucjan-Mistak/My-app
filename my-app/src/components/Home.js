@@ -1,44 +1,31 @@
+// Home.js
 import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import productsData from '../data/products.json';
 
-function Home() {
-    const [stock, setStock] = useState(() => {
-        const storedStock = localStorage.getItem('stock');
-        return storedStock ? JSON.parse(storedStock) : [];
-    });
+function Home({ stock }) {
+    const [aggregatedStock, setAggregatedStock] = useState({});
 
     useEffect(() => {
-        const handleStorageChange = () => {
-            const storedStock = localStorage.getItem('stock');
-            setStock(storedStock ? JSON.parse(storedStock) : []);
+        const aggregateStock = () => {
+            const aggregated = {};
+            stock.forEach(item => {
+                if (aggregated[item.name]) {
+                    aggregated[item.name] += item.quantity;
+                } else {
+                    aggregated[item.name] = item.quantity;
+                }
+            });
+            return aggregated;
         };
 
-        window.addEventListener('storage', handleStorageChange);
-
-        return () => {
-            window.removeEventListener('storage', handleStorageChange);
-        };
-    }, []);
-
-    const aggregateStock = () => {
-        const aggregatedStock = {};
-        stock.forEach(item => {
-            if (aggregatedStock[item.name]) {
-                aggregatedStock[item.name] += item.quantity;
-            } else {
-                aggregatedStock[item.name] = item.quantity;
-            }
-        });
-        return aggregatedStock;
-    };
+        setAggregatedStock(aggregateStock());
+    }, [stock]);
 
     const calculateVolume = (quantity, boardVolume) => {
         const volume = quantity * boardVolume;
-        return volume.toFixed(2); // Zaokrąglanie do dwóch miejsc po przecinku
+        return volume.toFixed(2);
     };
-
-    const aggregatedStock = aggregateStock();
 
     const totalVolume = Object.keys(aggregatedStock).reduce((total, productName) => {
         const quantity = aggregatedStock[productName];
@@ -67,7 +54,7 @@ function Home() {
                                     <TableCell component="th" scope="row">
                                         {productName}
                                     </TableCell>
-                                    <TableCell align="right">{quantity.toFixed(2)}</TableCell> {/* Zaokrąglanie do dwóch miejsc po przecinku */}
+                                    <TableCell align="right">{quantity.toFixed(2)}</TableCell>
                                     <TableCell align="right">{volume}</TableCell>
                                 </TableRow>
                             );

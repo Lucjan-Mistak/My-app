@@ -1,27 +1,11 @@
+// Production.js
 import React, { useState, useEffect } from 'react';
 import productsData from '../data/products.json';
 import { Container, Typography, Select, FormControl, MenuItem, TextField, Button } from '@mui/material';
 
-function Production() {
+function Production({ stock, setStock }) {
     const [productName, setProductName] = useState('');
     const [quantity, setQuantity] = useState('');
-    const [stock, setStock] = useState(() => {
-        const storedStock = localStorage.getItem('stock');
-        return storedStock ? JSON.parse(storedStock) : [];
-    });
-
-    useEffect(() => {
-        const handleStorageChange = () => {
-            const storedStock = localStorage.getItem('stock');
-            setStock(storedStock ? JSON.parse(storedStock) : []);
-        };
-
-        window.addEventListener('storage', handleStorageChange);
-
-        return () => {
-            window.removeEventListener('storage', handleStorageChange);
-        };
-    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -32,7 +16,7 @@ function Production() {
             const newStockItem = {
                 id: stock.length + 1,
                 name: selectedProduct.name,
-                quantity: parseFloat(quantity), // Konwersja na liczbę zmiennoprzecinkową
+                quantity: parseFloat(quantity),
             };
 
             const updatedStock = [...stock, newStockItem];
@@ -45,6 +29,19 @@ function Production() {
         setProductName('');
         setQuantity('');
     };
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            const storedStock = localStorage.getItem('stock');
+            setStock(storedStock ? JSON.parse(storedStock) : []);
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, [setStock]);
 
     return (
         <Container maxWidth="sm" mt={4}>

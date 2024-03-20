@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+// Shipment.js
+import React, { useState, useEffect } from 'react';
 import { Container, Typography, Select, FormControl, MenuItem, TextField, Button } from '@mui/material';
 
-function Shipment() {
+function Shipment({ stock, setStock }) {
     const [productName, setProductName] = useState('');
     const [quantity, setQuantity] = useState('');
-    const [stock, setStock] = useState(JSON.parse(localStorage.getItem('stock')) || []);
-
-    // Tworzymy Set dla unikalnych nazw produktów
-    const uniqueProductNames = new Set(stock.map(item => item.name));
 
     const handleProductChange = (event) => {
         setProductName(event.target.value);
-        // Ustawiamy domyślną ilość na 0
         setQuantity('0');
     };
 
@@ -45,6 +41,19 @@ function Shipment() {
         }
     };
 
+    useEffect(() => {
+        const handleStorageChange = () => {
+            const storedStock = localStorage.getItem('stock');
+            setStock(storedStock ? JSON.parse(storedStock) : []);
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, [setStock]);
+
     return (
         <Container maxWidth="sm" mt={4}>
             <Typography variant="h4" mb={2}>Wysyłka</Typography>
@@ -56,9 +65,8 @@ function Shipment() {
                         required
                     >
                         <MenuItem value="">Wybierz produkt</MenuItem>
-                        {/* Mapujemy unikalne nazwy produktów */}
-                        {[...uniqueProductNames].map((productName, index) => (
-                            <MenuItem key={index} value={productName}>{productName}</MenuItem>
+                        {stock.map((item, index) => (
+                            <MenuItem key={index} value={item.name}>{item.name}</MenuItem>
                         ))}
                     </Select>
                 </FormControl>
