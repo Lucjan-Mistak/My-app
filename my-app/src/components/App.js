@@ -14,9 +14,9 @@ function App() {
     return (
         <Router>
             <div>
-                <Navbar />
+                <Navbar setStock={setStock} />
                 <Routes>
-                    <Route path="/" element={<Home stock={stock} />} />
+                    <Route path="/" element={<Home stock={stock} setStock={setStock}/>} />
                     <Route path="/production" element={<Production stock={stock} setStock={setStock} />} />
                     <Route path="/shipment" element={<Shipment stock={stock} setStock={setStock} />} />
                 </Routes>
