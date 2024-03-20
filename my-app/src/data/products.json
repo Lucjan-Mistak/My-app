@@ -1,38 +1,80 @@
 [
     {
       "name": "22x145x1200 I",
-      "initialQuantity": 100,
-      "packQuantity": 10,
-      "boardVolume": 0.039
+      "class": 1,
+      "quantity": 408,
+      "boardVolume": 0.003828
     },
     {
       "name": "22x145x1200 IA",
-      "initialQuantity": 80,
-      "packQuantity": 10,
-      "boardVolume": 0.039
+      "class": 1,
+      "quantity": 408,
+      "boardVolume": 0.003828
     },
     {
       "name": "22x145x1200 IB",
-      "initialQuantity": 60,
-      "packQuantity": 10,
-      "boardVolume": 0.039
+      "class": 1,
+      "quantity": 395,
+      "boardVolume": 0.003828
+    },
+    {
+      "name": "22x145x1200 II",
+      "class": 2,
+      "quantity": 395,
+      "boardVolume": 0.003828
     },
     {
       "name": "22x100x1200 I",
-      "initialQuantity": 120,
-      "packQuantity": 12,
-      "boardVolume": 0.0264
+      "class": 1,
+      "quantity": 608,
+      "boardVolume": 0.00264
     },
     {
       "name": "22x100x1200 IA",
-      "initialQuantity": 90,
-      "packQuantity": 12,
-      "boardVolume": 0.0264
+      "class": 1,
+      "quantity": 608,
+      "boardVolume": 0.00264
     },
     {
       "name": "22x100x1200 IB",
-      "initialQuantity": 70,
-      "packQuantity": 12,
-      "boardVolume": 0.0264
+      "class": 1,
+      "quantity": 571,
+      "boardVolume": 0.00264
+    },
+    {
+      "name": "22x100x1200 II",
+      "class": 2,
+      "quantity": 571,
+      "boardVolume": 0.00264
+    },
+    {
+      "name": "22x145x800 I",
+      "class": 1,
+      "quantity": 480,
+      "boardVolume": 0.002552
+    },
+    {
+      "name": "22x145x800 II",
+      "class": 2,
+      "quantity": 392,
+      "boardVolume": 0.002552
+    },
+    {
+      "name": "22x100x800 II",
+      "class": 2,
+      "quantity": 524,
+      "boardVolume": 0.00176
+    },
+    {
+      "name": "Kant 78x100",
+      "class": 1,
+      "quantity": 436.80,
+      "boardVolume": 0.0078
+    },
+    {
+      "name": "Kant 78x145",
+      "class": 1,
+      "quantity": 302.40,
+      "boardVolume": 0.01131
     }
   ]
