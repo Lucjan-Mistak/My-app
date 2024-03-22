@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar({ handleClearStock }) {
+function Navbar({ handleClearStock, handleLogout }) {
     const handleClearConfirmation = () => {
         const confirmation = window.confirm('Czy na pewno chcesz wyczyścić magazyn?');
 
@@ -31,6 +31,10 @@ function Navbar({ handleClearStock }) {
                         </li>
                         <li className="nav-element">
                             <button className="nav__button" onClick={handleClearConfirmation}>Wyczyść magazyn</button>
+                        </li>
+                        {/* Dodaj przycisk do wylogowania */}
+                        <li className="nav-element">
+                            <button className="nav__button" onClick={handleLogout}>Wyloguj</button>
                         </li>
                     </ul>
                 </nav>

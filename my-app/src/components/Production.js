@@ -58,7 +58,7 @@ function Production({ stock, setStock }) {
                         ))}
                     </Select>
                 </FormControl>
-                <TextField
+                <TextField style={{marginTop: '20px'}}
                     fullWidth
                     label="Ilość"
                     type="number"
@@ -67,7 +67,7 @@ function Production({ stock, setStock }) {
                     required
                     mb={2} // Dodajemy odstęp między inputami
                 />
-                <Button variant="contained" color="primary" type="submit">Dodaj produkt</Button>
+                <Button style={{marginTop: '20px'}} variant="contained" color="primary" type="submit">Dodaj produkt</Button>
             </form>
         </Container>
     );

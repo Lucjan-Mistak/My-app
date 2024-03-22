@@ -9,13 +9,16 @@ function Home({ stock }) {
     useEffect(() => {
         const aggregateStock = () => {
             const aggregated = {};
-            stock.forEach(item => {
-                if (aggregated[item.name]) {
-                    aggregated[item.name] += item.quantity;
-                } else {
-                    aggregated[item.name] = item.quantity;
-                }
-            });
+            // Sprawdzamy, czy stock jest zdefiniowany i czy nie jest pusty
+            if (stock && stock.length > 0) {
+                stock.forEach(item => {
+                    if (aggregated[item.name]) {
+                        aggregated[item.name] += item.quantity;
+                    } else {
+                        aggregated[item.name] = item.quantity;
+                    }
+                });
+            }
             return aggregated;
         };
 
