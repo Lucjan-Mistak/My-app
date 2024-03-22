@@ -1,5 +1,4 @@
-// Shipment.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Typography, Select, FormControl, MenuItem, TextField, Button } from '@mui/material';
 
 function Shipment({ stock, setStock }) {
@@ -8,6 +7,7 @@ function Shipment({ stock, setStock }) {
 
     const handleProductChange = (event) => {
         setProductName(event.target.value);
+        // Ustawiamy domyślną ilość na 0
         setQuantity('0');
     };
 
@@ -41,19 +41,6 @@ function Shipment({ stock, setStock }) {
         }
     };
 
-    useEffect(() => {
-        const handleStorageChange = () => {
-            const storedStock = localStorage.getItem('stock');
-            setStock(storedStock ? JSON.parse(storedStock) : []);
-        };
-
-        window.addEventListener('storage', handleStorageChange);
-
-        return () => {
-            window.removeEventListener('storage', handleStorageChange);
-        };
-    }, [setStock]);
-
     return (
         <Container maxWidth="sm" mt={4}>
             <Typography variant="h4" mb={2}>Wysyłka</Typography>
@@ -65,7 +52,7 @@ function Shipment({ stock, setStock }) {
                         required
                     >
                         <MenuItem value="">Wybierz produkt</MenuItem>
-                        {stock.map((item, index) => (
+                        {stock && stock.map((item, index) => (
                             <MenuItem key={index} value={item.name}>{item.name}</MenuItem>
                         ))}
                     </Select>
@@ -78,8 +65,9 @@ function Shipment({ stock, setStock }) {
                     onChange={(e) => setQuantity(e.target.value)}
                     inputProps={{ min: 0 }}
                     required
+                    mb={2} // Dodajemy odstęp między inputami
                 />
-                <Button variant="contained" color="primary" type="submit" mt={2}>Wyślij produkt</Button>
+                <Button variant="contained" color="primary" type="submit">Wyślij produkt</Button>
             </form>
         </Container>
     );

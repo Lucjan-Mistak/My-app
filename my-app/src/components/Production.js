@@ -1,4 +1,3 @@
-// Production.js
 import React, { useState, useEffect } from 'react';
 import productsData from '../data/products.json';
 import { Container, Typography, Select, FormControl, MenuItem, TextField, Button } from '@mui/material';
@@ -66,8 +65,9 @@ function Production({ stock, setStock }) {
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
                     required
+                    mb={2} // Dodajemy odstęp między inputami
                 />
-                <Button variant="contained" color="primary" type="submit" mt={2}>Dodaj produkt</Button>
+                <Button variant="contained" color="primary" type="submit">Dodaj produkt</Button>
             </form>
         </Container>
     );
