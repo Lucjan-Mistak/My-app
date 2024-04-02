@@ -2,79 +2,79 @@
     {
       "name": "22x145x1200 I",
       "class": 1,
-      "quantity": 408,
+      "quantity": 0,
       "boardVolume": 0.003828
     },
     {
       "name": "22x145x1200 IA",
       "class": 1,
-      "quantity": 408,
+      "quantity": 0,
       "boardVolume": 0.003828
     },
     {
       "name": "22x145x1200 IB",
       "class": 1,
-      "quantity": 395,
+      "quantity": 0,
       "boardVolume": 0.003828
     },
     {
       "name": "22x145x1200 II",
       "class": 2,
-      "quantity": 395,
+      "quantity": 0,
       "boardVolume": 0.003828
     },
     {
       "name": "22x100x1200 I",
       "class": 1,
-      "quantity": 608,
+      "quantity": 0,
       "boardVolume": 0.00264
     },
     {
       "name": "22x100x1200 IA",
       "class": 1,
-      "quantity": 608,
+      "quantity": 0,
       "boardVolume": 0.00264
     },
     {
       "name": "22x100x1200 IB",
       "class": 1,
-      "quantity": 571,
+      "quantity": 0,
       "boardVolume": 0.00264
     },
     {
       "name": "22x100x1200 II",
       "class": 2,
-      "quantity": 571,
+      "quantity": 0,
       "boardVolume": 0.00264
     },
     {
       "name": "22x145x800 I",
       "class": 1,
-      "quantity": 480,
+      "quantity": 0,
       "boardVolume": 0.002552
     },
     {
       "name": "22x145x800 II",
       "class": 2,
-      "quantity": 392,
+      "quantity": 0,
       "boardVolume": 0.002552
     },
     {
       "name": "22x100x800 II",
       "class": 2,
-      "quantity": 524,
+      "quantity": 0,
       "boardVolume": 0.00176
     },
     {
       "name": "Kant 78x100",
       "class": 1,
-      "quantity": 436.80,
+      "quantity": 0,
       "boardVolume": 0.0078
     },
     {
       "name": "Kant 78x145",
       "class": 1,
-      "quantity": 302.40,
+      "quantity": 0,
       "boardVolume": 0.01131
     }
   ]

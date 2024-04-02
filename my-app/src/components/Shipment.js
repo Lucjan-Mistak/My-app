@@ -6,9 +6,18 @@ function Shipment({ stock, setStock }) {
     const [quantity, setQuantity] = useState('');
 
     const handleProductChange = (event) => {
-        setProductName(event.target.value);
-        // Ustawiamy domyślną ilość na 0
-        setQuantity('0');
+        const selectedProduct = event.target.value;
+        setProductName(selectedProduct);
+
+        // Pobierz maksymalną ilość magazynową wybranego produktu
+        const maxQuantity = getMaxStockQuantity(selectedProduct);
+        // Ustaw wartość maksymalnej ilości jako wartość domyślną dla pola ilości
+        setQuantity(maxQuantity.toString());
+    };
+
+    const getMaxStockQuantity = (productName) => {
+        const product = stock.find(item => item.name === productName);
+        return product ? product.quantity.toString() : '0';
     };
 
     const handleSubmit = (event) => {
