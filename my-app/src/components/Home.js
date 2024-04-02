@@ -1,4 +1,3 @@
-// Home.js
 import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import productsData from '../data/products.json';
@@ -49,7 +48,18 @@ function Home({ stock }) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {Object.keys(aggregatedStock).map((productName, index) => {
+                        {/* Sortowanie po klasie, a następnie po nazwie produktu */}
+                        {Object.keys(aggregatedStock).sort((a, b) => {
+                            const classA = getClassByName(a);
+                            const classB = getClassByName(b);
+                            if (classA === 1 && classB === 2) {
+                                return -1;
+                            } else if (classA === 2 && classB === 1) {
+                                return 1;
+                            } else {
+                                return a.localeCompare(b);
+                            }
+                        }).map((productName, index) => {
                             const quantity = aggregatedStock[productName];
                             const volume = calculateVolume(quantity, getProductVolume(productName));
                             return (
@@ -79,4 +89,9 @@ export default Home;
 function getProductVolume(productName) {
     const product = productsData.find(product => product.name === productName);
     return product ? product.boardVolume : 0;
+}
+
+function getClassByName(productName) {
+    const product = productsData.find(product => product.name === productName);
+    return product ? product.class : 0;
 }
