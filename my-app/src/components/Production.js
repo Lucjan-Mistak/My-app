@@ -56,9 +56,16 @@ function Production({ stock, setStock }) {
     };
 
     const handleEndProduction = () => {
-        setProductionTableData([]);
-        setTotalVolume(0);
-        setTotalWoodNeeded(0);
+        const confirmed = window.confirm('Czy na pewno chcesz zakończyć produkcję?');
+        if (confirmed) {
+            setProductionTableData([]);
+            setTotalVolume(0);
+            setTotalWoodNeeded(0);
+        }
+    };
+
+    const handlePrint = () => {
+        window.print();
     };
 
     useEffect(() => {
@@ -77,7 +84,6 @@ function Production({ stock, setStock }) {
 
         calculateTotalWoodNeeded();
     }, [productionTableData]);
-
 
     return (
         <Container maxWidth="sm" mt={4}>
@@ -104,15 +110,18 @@ function Production({ stock, setStock }) {
                     required
                     mb={2}
                 />
+
                 <TextField style={{marginTop: '10px'}}
                     fullWidth
                     label="Wydajność (%)"
                     type="number"
+                    step="any"
                     value={efficiency}
                     onChange={handleEfficiencyChange}
                     required
                     mb={2}
                 />
+
                 <Button style={{marginTop: '20px'}} variant="contained" color="primary" type="submit">Dodaj produkt</Button>
             </form>
 
@@ -164,7 +173,8 @@ function Production({ stock, setStock }) {
             </TableContainer>
 
             <div style={{ marginTop: '20px', textAlign: 'center' }}>
-                <Button variant="contained" color="primary" onClick={handleEndProduction} style={{ marginRight: '10px' }}>Zakończ produkcję</Button>
+                <Button variant="contained" color="error" onClick={handleEndProduction} style={{ marginRight: '10px' }}>Zakończ produkcję</Button>
+                <Button variant="contained" color="primary" onClick={handlePrint}>Wydrukuj</Button>
             </div>
         </Container>
     );

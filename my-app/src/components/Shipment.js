@@ -70,6 +70,7 @@ function Shipment({ stock, setStock }) {
                     fullWidth
                     label="Ilość"
                     type="number"
+                    step="any"
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
                     inputProps={{ min: 0 }}

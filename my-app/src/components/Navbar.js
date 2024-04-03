@@ -32,7 +32,6 @@ function Navbar({ handleClearStock, handleLogout }) {
                         <li className="nav-element">
                             <button className="nav__button" onClick={handleClearConfirmation}>Wyczyść magazyn</button>
                         </li>
-                        {/* Dodaj przycisk do wylogowania */}
                         <li className="nav-element">
                             <button className="nav__button" onClick={handleLogout}>Wyloguj</button>
                         </li>
