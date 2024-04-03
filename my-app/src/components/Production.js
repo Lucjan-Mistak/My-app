@@ -4,7 +4,7 @@ import { Container, Typography, Select, FormControl, MenuItem, TextField, Button
 import { useProduction } from './ProductionContext';
 
 function Production({ stock, setStock }) {
-    const { productionTableData, setProductionTableData } = useProduction(); // Użyj kontekstu produkcji
+    const { productionTableData, setProductionTableData } = useProduction();
 
     const [productName, setProductName] = useState('');
     const [quantity, setQuantity] = useState('');
@@ -29,7 +29,7 @@ function Production({ stock, setStock }) {
                 woodNeeded: parseFloat(quantity * selectedProduct.boardVolume / efficiency)
             };
 
-            setProductionTableData([...productionTableData, newProductionEntry]); // Ustaw dane tabeli produkcyjnej za pomocą kontekstu produkcji
+            setProductionTableData([...productionTableData, newProductionEntry]);
 
             const existingProductIndex = stock.findIndex(item => item.name === productName);
             if (existingProductIndex !== -1) {
@@ -78,15 +78,6 @@ function Production({ stock, setStock }) {
         calculateTotalWoodNeeded();
     }, [productionTableData]);
 
-    const getProductVolume = (productName) => {
-        const product = productsData.find(product => product.name === productName);
-        return product ? product.boardVolume : 0;
-    };
-
-    const calculateVolume = (quantity, boardVolume) => {
-        const volume = quantity * boardVolume;
-        return volume.toFixed(2);
-    };
 
     return (
         <Container maxWidth="sm" mt={4}>
@@ -137,18 +128,31 @@ function Production({ stock, setStock }) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {productionTableData.sort((a, b) => {
-                            const classA = productsData.find(product => product.name === a.productName)?.class;
-                            const classB = productsData.find(product => product.name === b.productName)?.class;
-                            return classA - classB;
-                        }).map((item, index) => (
-                            <TableRow key={index}>
-                                <TableCell>{item.productName}</TableCell>
-                                <TableCell align="right">{item.quantity}</TableCell>
-                                <TableCell align="right">{calculateVolume(item.quantity, getProductVolume(item.productName))}</TableCell>
-                                <TableCell style={{color: 'red'}} align="right">{item.woodNeeded.toFixed(2)}</TableCell>
-                            </TableRow>
-                        ))}
+                        {Object.values(
+                            productionTableData.reduce((acc, curr) => {
+                                if (!acc[curr.productName]) {
+                                    acc[curr.productName] = { ...curr };
+                                } else {
+                                    acc[curr.productName].quantity += curr.quantity;
+                                    acc[curr.productName].m3 += curr.m3;
+                                    acc[curr.productName].woodNeeded += curr.woodNeeded;
+                                }
+                                return acc;
+                            }, {})
+                        )
+                            .sort((a, b) => {
+                                const classA = productsData.find(product => product.name === a.productName)?.class;
+                                const classB = productsData.find(product => product.name === b.productName)?.class;
+                                return classA - classB;
+                            })
+                            .map((item, index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{item.productName}</TableCell>
+                                    <TableCell align="right">{item.quantity}</TableCell>
+                                    <TableCell align="right">{item.m3.toFixed(2)}</TableCell>
+                                    <TableCell style={{color: 'red'}} align="right">{item.woodNeeded.toFixed(2)}</TableCell>
+                                </TableRow>
+                            ))}
                         <TableRow>
                             <TableCell><strong>Suma:</strong></TableCell>
                             <TableCell align="right"></TableCell>
