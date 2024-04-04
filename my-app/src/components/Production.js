@@ -105,6 +105,7 @@ function Production({ stock, setStock }) {
                     fullWidth
                     label="Ilość"
                     type="number"
+                    step="0.01"
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
                     required
