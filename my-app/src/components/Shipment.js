@@ -25,13 +25,24 @@ function Shipment({ stock, setStock }) {
 
     const handleAddToShipment = () => {
         if (productName && quantity) {
-            const newShipmentEntry = {
-                productName: productName,
-                quantity: parseFloat(quantity),
-                m3: calculateVolume(parseFloat(quantity), getProductVolume(productName)),
-                notes: ''
-            };
-            setShipmentOrder([...shipmentOrder, newShipmentEntry]);
+            // Sprawdzamy, czy produkt o takiej samej nazwie już istnieje w zleceniu załadunku
+            const existingProductIndex = shipmentOrder.findIndex(item => item.productName === productName);
+            if (existingProductIndex !== -1) {
+                // Jeśli produkt już istnieje, aktualizujemy jego ilość i objętość
+                const updatedShipmentOrder = [...shipmentOrder];
+                updatedShipmentOrder[existingProductIndex].quantity += parseFloat(quantity);
+                updatedShipmentOrder[existingProductIndex].m3 = calculateVolume(updatedShipmentOrder[existingProductIndex].quantity, getProductVolume(productName));
+                setShipmentOrder(updatedShipmentOrder);
+            } else {
+                // Jeśli produkt nie istnieje, dodajemy go do zlecenia załadunku
+                const newShipmentEntry = {
+                    productName: productName,
+                    quantity: parseFloat(quantity),
+                    m3: calculateVolume(parseFloat(quantity), getProductVolume(productName)),
+                    notes: ''
+                };
+                setShipmentOrder([...shipmentOrder, newShipmentEntry]);
+            }
             setProductName('');
             setQuantity('');
         }
